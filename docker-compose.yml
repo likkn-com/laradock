@@ -55,6 +55,8 @@ volumes:
     driver: ${VOLUMES_DRIVER}
   react:
     driver: ${VOLUMES_DRIVER}
+  cimal:
+    driver: ${VOLUMES_DRIVER}
 
 services:
 
@@ -408,6 +410,7 @@ services:
         - "${VARNISH_BACKEND_PORT}:81"
       depends_on:
         - php-fpm
+        - cimal
       networks:
         - frontend
         - backend
@@ -1949,4 +1952,22 @@ services:
           - backend
       volumes:
         - ./react:/usr/src/app/react
+        - /usr/src/app/react/node_modules
+
+### cimal #####################################################
+    cimal:
+      build:
+        context: ./cimal
+      ports:
+        - "3002:80"
+      container_name: cimal
+      hostname: cimal
+      stdin_open: true
+      environment:
+        - CHOKIDAR_USEPOLLING=true
+      networks:
+          - frontend
+          - backend
+      volumes:
+        - ./cimal:/usr/src/app/react
         - /usr/src/app/react/node_modules

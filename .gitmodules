@@ -1,0 +1,6 @@
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/halverneus/static-file-server
+[submodule "cimal"]
+	path = cimal
+	url = https://gitlab.com/likkn-group/cimal.git
