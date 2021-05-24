@@ -57,6 +57,8 @@ volumes:
     driver: ${VOLUMES_DRIVER}
   cimal:
     driver: ${VOLUMES_DRIVER}
+  ciia:
+    driver: ${VOLUMES_DRIVER}
 
 services:
 
@@ -411,6 +413,8 @@ services:
       depends_on:
         - php-fpm
         - cimal
+        - ciia
+        - mysql
       networks:
         - frontend
         - backend
@@ -1971,6 +1975,24 @@ services:
       volumes:
         - ./cimal:/usr/src/app/react
         - /usr/src/app/react/node_modules
+### ciia #####################################################
+    ciia:
+      build:
+        context: ./ciia.likkn.com
+      ports:
+        - "3003:80"
+      container_name: ciia
+      hostname: ciia
+      stdin_open: true
+      environment:
+        - CHOKIDAR_USEPOLLING=true
+      networks:
+          - frontend
+          - backend
+      volumes:
+        - ./ciia:/usr/src/app/react
+        - /usr/src/app/react/node_modules     
+
 ### kafka ####################################################
     kafka:
       image: wurstmeister/kafka

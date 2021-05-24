@@ -1192,6 +1192,16 @@ ARG LOCALE=POSIX
 ENV LC_ALL ${LOCALE}
 
 WORKDIR /var/www
+#set directory permissions
+#RUN php artisan migrate:fresh --seed
+#RUN chown -R 1000:1000 /var/www/public
+#RUN find /var/www/ -type f -exec chmod 664 {} \;
+#RUN find /var/www/ -type d -exec chmod 775 {} \;
+#RUN chgrp -R 1000 /var/www/public/storage /var/www/public/bootstrap/cache
+#RUN chmod -R ug+rwx /var/www/public/storage /var/www/public/bootstrap/cache
+
+#RUN php artisan apiato:permissions:toRole admin
+#RUN php artisan passport:install
 
 CMD ["php-fpm"]
 

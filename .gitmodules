@@ -4,3 +4,6 @@
 [submodule "cimal"]
 	path = cimal
 	url = https://gitlab.com/likkn-group/cimal.git
+[submodule "ciia.likkn.com"]
+	path = ciia.likkn.com
+	url = https://gitlab.com/likkn-group/ciia.likkn.com
